@@ -34,7 +34,7 @@ export default function QuotesArea() {
     setQuoteList(parsedData);
   };
 
-  const fetchMore = () => {
+  const fetchMore = async () => {
     let data;
     const url = "https://animechan.vercel.app/api/quotes";
     try {

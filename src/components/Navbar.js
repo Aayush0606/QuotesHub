@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar() {
+  const location = useLocation();
   return (
     <div style={{ marginBottom: "6rem" }}>
       <nav className="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
@@ -22,22 +23,46 @@ export default function Navbar() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className="nav-link" aria-current="page" to="/anime">
+                <Link
+                  className={`nav-link ${
+                    location.pathname === "/anime" ? "active" : ""
+                  }`}
+                  aria-current="page"
+                  to="/anime"
+                >
                   Anime
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" aria-current="page" to="/character">
+                <Link
+                  className={`nav-link ${
+                    location.pathname === "/character" ? "active" : ""
+                  }`}
+                  aria-current="page"
+                  to="/character"
+                >
                   Character
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" aria-current="page" to="/saved">
+                <Link
+                  className={`nav-link ${
+                    location.pathname === "/saved" ? "active" : ""
+                  }`}
+                  aria-current="page"
+                  to="/saved"
+                >
                   Saved
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" aria-current="page" to="/about">
+                <Link
+                  className={`nav-link ${
+                    location.pathname === "/about" ? "active" : ""
+                  }`}
+                  aria-current="page"
+                  to="/about"
+                >
                   About
                 </Link>
               </li>
