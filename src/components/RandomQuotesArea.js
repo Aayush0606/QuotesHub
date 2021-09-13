@@ -17,7 +17,7 @@ export default function QuotesArea() {
   const [quoteList, setQuoteList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(10);
-
+  // eslint-disable-next-line
   const GetRandomQuotes = async () => {
     setLoading(true);
     let data;

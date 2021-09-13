@@ -1,14 +1,21 @@
-import React, { useState, useContext } from "react";
-import { TiDelete } from "react-icons/ti";
+import React, { useState, useContext, useEffect } from "react";
 import QuotesContext from "../context/QuotesContext";
 import QuoteCard from "./QuoteCard";
 import Loading from "./Loading";
 
 export default function Saved() {
   const context = useContext(QuotesContext);
-  const { Quotes, setQuotes } = context;
+  // eslint-disable-next-line
+  const { Quotes, setQuotes, fetchQuotes } = context;
   document.title = `Saved Quotes`;
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    // eslint-disable-next-line
+    let fetching = fetchQuotes();
+    setLoading(false);
+  }, [fetchQuotes]);
   return (
     <>
       <div className="container my-3">

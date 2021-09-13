@@ -6,9 +6,8 @@ import {
   FaReact,
   FaNode,
   FaBootstrap,
-  FaDatabase,
 } from "react-icons/fa";
-import { SiSocketDotIo } from "react-icons/si";
+import { SiSocketDotIo, SiMongodb } from "react-icons/si";
 
 export default function About() {
   document.title = `About Me`;
@@ -47,7 +46,7 @@ export default function About() {
               </li>
               <li className="list-inline-item">
                 <p className="social-link">
-                  <FaDatabase className="icon" />
+                  <SiMongodb className="icon" />
                 </p>
               </li>
             </ul>

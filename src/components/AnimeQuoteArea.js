@@ -58,23 +58,32 @@ export default function AnimeQuoteArea() {
     <div className="conatiner">
       <div className="container my-3">
         <div className="input-group mb-3 my-4">
-          <input
-            type="text"
-            className="form-control"
-            value={title}
-            onChange={handleChange}
-          />
-          <button
-            className={`btn btn-info ${title.length === 0 ? "disabled" : ""}`}
-            type="button"
-            id="button-addon2"
-            onClick={() => {
+          <form
+            className="container"
+            onSubmit={(e) => {
+              e.preventDefault();
               setTetx(Capitalize(title));
               GetAnimeQuote();
             }}
           >
-            Search
-          </button>
+            <input
+              type="text"
+              className="form-control"
+              value={title}
+              onChange={handleChange}
+            />
+            <div className="text-center">
+              <button
+                className={`btn btn-info ${
+                  title.length === 0 ? "disabled" : ""
+                } my-2`}
+                type="submit"
+                id="button-addon2"
+              >
+                Search
+              </button>
+            </div>
+          </form>
         </div>
         <div className="container">
           <h1 className="text-center">{text} quotes for you</h1>
