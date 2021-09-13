@@ -1,12 +1,16 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
 
 export default function Navbar() {
   const location = useLocation();
+  const history = useHistory();
   return (
     <div style={{ marginBottom: "6rem" }}>
       <nav className="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
+          <Link
+            className="navbar-brand"
+            to={localStorage.getItem("auth-token") ? "/" : "/signup"}
+          >
             Home
           </Link>
           <button
@@ -28,7 +32,7 @@ export default function Navbar() {
                     location.pathname === "/anime" ? "active" : ""
                   }`}
                   aria-current="page"
-                  to="/anime"
+                  to={localStorage.getItem("auth-token") ? "/anime" : "/signup"}
                 >
                   Anime
                 </Link>
@@ -39,7 +43,11 @@ export default function Navbar() {
                     location.pathname === "/character" ? "active" : ""
                   }`}
                   aria-current="page"
-                  to="/character"
+                  to={
+                    localStorage.getItem("auth-token")
+                      ? "/character"
+                      : "/signup"
+                  }
                 >
                   Character
                 </Link>
@@ -50,7 +58,7 @@ export default function Navbar() {
                     location.pathname === "/saved" ? "active" : ""
                   }`}
                   aria-current="page"
-                  to="/saved"
+                  to={localStorage.getItem("auth-token") ? "/saved" : "/signup"}
                 >
                   Saved
                 </Link>
@@ -61,12 +69,34 @@ export default function Navbar() {
                     location.pathname === "/about" ? "active" : ""
                   }`}
                   aria-current="page"
-                  to="/about"
+                  to={localStorage.getItem("auth-token") ? "/about" : "/signup"}
                 >
                   About
                 </Link>
               </li>
             </ul>
+            {!localStorage.getItem("auth-token") ? (
+              <div className="d-flex">
+                <Link to="/login" className="btn btn-primary mx-2">
+                  Login
+                </Link>
+                <Link to="/signup" className="btn btn-primary mx-2">
+                  SignUp
+                </Link>
+              </div>
+            ) : (
+              <div className="d-flex">
+                <button
+                  className="btn btn-primary mx-2"
+                  onClick={() => {
+                    localStorage.removeItem("auth-token");
+                    history.push("/login");
+                  }}
+                >
+                  Logout
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </nav>

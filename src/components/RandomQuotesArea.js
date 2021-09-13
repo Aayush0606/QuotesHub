@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
+
 import PropTypes from "prop-types";
 import QuoteCard from "./QuoteCard";
 import Loading from "./Loading";
@@ -13,6 +15,14 @@ QuotesArea.defaultProps = {
 };
 
 export default function QuotesArea() {
+  const history = useHistory();
+  useEffect(() => {
+    if (localStorage.getItem("auth-token")) {
+      GetRandomQuotes();
+    } else {
+      history.push("/signup");
+    }
+  }, []);
   document.title = `Random Quotes`;
   const [quoteList, setQuoteList] = useState([]);
   const [loading, setLoading] = useState(false);

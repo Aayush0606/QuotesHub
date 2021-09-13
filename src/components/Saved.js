@@ -12,8 +12,7 @@ export default function Saved() {
 
   useEffect(() => {
     setLoading(true);
-    // eslint-disable-next-line
-    let fetching = fetchQuotes();
+    fetchQuotes();
     setLoading(false);
   }, []);
   return (

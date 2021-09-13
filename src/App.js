@@ -6,6 +6,8 @@ import AnimeQuoteArea from "./components/AnimeQuoteArea";
 import CharacterQuoteArea from "./components/CharacterQuoteArea";
 import Saved from "./components/Saved";
 import QuotesState from "./context/QuotesState";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
 
 function App() {
   return (
@@ -14,9 +16,16 @@ function App() {
         <Router>
           <Navbar />
           <Switch>
+            <Route exact path="/signup">
+              <Signup />
+            </Route>
             <Route exact path="/">
               <RandomQuotesArea />
             </Route>
+            <Route exact path="/login">
+              <Login />
+            </Route>
+
             <Route exact path="/anime">
               <AnimeQuoteArea />
             </Route>

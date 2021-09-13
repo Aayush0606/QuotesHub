@@ -12,8 +12,7 @@ const QuotesState = (props) => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "auth-token":
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjEzZTE2NDZhOTc2MmNiM2QwMDBiNWNmIn0sImlhdCI6MTYzMTQ1ODg4Nn0.-gb47bdkIoafEBM7N9Aj3VeuFJmkLXwm8_TuzOvtMio",
+          "auth-token": localStorage.getItem("auth-token"),
         },
       });
       const results = await response.json();
@@ -31,8 +30,7 @@ const QuotesState = (props) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "auth-token":
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjEzZTE2NDZhOTc2MmNiM2QwMDBiNWNmIn0sImlhdCI6MTYzMTQ1ODg4Nn0.-gb47bdkIoafEBM7N9Aj3VeuFJmkLXwm8_TuzOvtMio",
+          "auth-token": localStorage.getItem("auth-token"),
         },
         body: JSON.stringify({ anime, character, quote }),
       });
@@ -51,8 +49,7 @@ const QuotesState = (props) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "auth-token":
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjEzZTE2NDZhOTc2MmNiM2QwMDBiNWNmIn0sImlhdCI6MTYzMTQ1ODg4Nn0.-gb47bdkIoafEBM7N9Aj3VeuFJmkLXwm8_TuzOvtMio",
+          "auth-token": localStorage.getItem("auth-token"),
         },
         body: JSON.stringify({ quote }),
       });
@@ -66,7 +63,7 @@ const QuotesState = (props) => {
 
   return (
     <QuotesContext.Provider
-      value={{ Quotes, setQuotes, addQuote, delQuote, fetchQuotes, isError }}
+      value={{ Quotes, setQuotes, addQuote, delQuote, fetchQuotes }}
     >
       {props.children}
     </QuotesContext.Provider>
