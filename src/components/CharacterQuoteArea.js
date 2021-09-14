@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import QuoteCard from "./QuoteCard";
 import Loading from "./Loading";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { useHistory } from "react-router-dom";
 
 export default function AnimeQuoteArea() {
+  const history = useHistory();
   const [text, setTetx] = useState("Character");
   document.title = `${text} Quotes`;
   const [title, setTitle] = useState("");
@@ -22,16 +24,23 @@ export default function AnimeQuoteArea() {
     setPage(1);
     let data;
     const url = `https://animechan.vercel.app/api/quotes/character?name=${title}&page=1`;
-    try {
-      data = await fetch(url);
-    } catch (e) {
-      alert("Something went wrong");
-      return;
+    data = await fetch(url);
+    if (data.ok) {
+      const parsedData = await data.json();
+      setHasMore(parsedData.length);
+      setLoading(false);
+      setQuoteList(parsedData);
+    } else if (data.status === 404) {
+      setLoading(false);
+      setQuoteList([]);
+      alert("Not Found");
+      history.push("/character");
+    } else {
+      setLoading(false);
+      setQuoteList([]);
+      alert("Error occured");
+      history.push("/character");
     }
-    const parsedData = await data.json();
-    setHasMore(parsedData.length);
-    setLoading(false);
-    setQuoteList(parsedData);
   };
 
   const fetchMore = async () => {
@@ -44,7 +53,7 @@ export default function AnimeQuoteArea() {
       data = await fetch(url);
     } catch (e) {
       alert("Something went wrong");
-      return;
+      history.push("/character");
     }
     const parsedData = await data.json();
     setHasMore(parsedData.length);

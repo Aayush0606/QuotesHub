@@ -38,14 +38,14 @@ export default function Login() {
             <h1>Login</h1>
           </div>
           <div className="mb-3">
-            <label htmlFor="exampleFormControlInput1" className="form-label">
+            <label htmlFor="email" className="form-label">
               Email address
             </label>
             <input
               required
               type="email"
               className="form-control"
-              id="exampleFormControlInput1"
+              id="email"
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);

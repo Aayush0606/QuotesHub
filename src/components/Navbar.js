@@ -66,6 +66,17 @@ export default function Navbar() {
               <li className="nav-item">
                 <Link
                   className={`nav-link ${
+                    location.pathname === "/chat" ? "active" : ""
+                  }`}
+                  aria-current="page"
+                  to={localStorage.getItem("auth-token") ? "/chat" : "/signup"}
+                >
+                  Chat
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className={`nav-link ${
                     location.pathname === "/about" ? "active" : ""
                   }`}
                   aria-current="page"

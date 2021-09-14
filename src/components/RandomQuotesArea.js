@@ -15,33 +15,31 @@ QuotesArea.defaultProps = {
 };
 
 export default function QuotesArea() {
-  const history = useHistory();
   useEffect(() => {
-    if (localStorage.getItem("auth-token")) {
-      GetRandomQuotes();
-    } else {
-      history.push("/signup");
-    }
+    GetRandomQuotes();
   }, []);
   document.title = `Random Quotes`;
   const [quoteList, setQuoteList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(10);
+  const history = useHistory();
   // eslint-disable-next-line
   const GetRandomQuotes = async () => {
     setLoading(true);
     let data;
     const url = "https://animechan.vercel.app/api/quotes";
-    try {
-      data = await fetch(url);
-    } catch (e) {
-      alert("Something went wrong");
-      return;
+    data = await fetch(url);
+    if (data.ok) {
+      const parsedData = await data.json();
+      setHasMore(parsedData.length);
+      setLoading(false);
+      setQuoteList(parsedData);
+    } else {
+      setLoading(false);
+      setQuoteList([]);
+      alert("Error Occured");
+      history.push("/");
     }
-    const parsedData = await data.json();
-    setHasMore(parsedData.length);
-    setLoading(false);
-    setQuoteList(parsedData);
   };
 
   const fetchMore = async () => {

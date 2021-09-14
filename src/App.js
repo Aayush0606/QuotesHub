@@ -8,7 +8,11 @@ import Saved from "./components/Saved";
 import QuotesState from "./context/QuotesState";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import Chat from "./components/Chat";
+import { io } from "socket.io-client";
 
+const socket = io(`http://localhost:8000`);
+export { socket };
 function App() {
   return (
     <>
@@ -18,6 +22,9 @@ function App() {
           <Switch>
             <Route exact path="/signup">
               <Signup />
+            </Route>
+            <Route exact path="/chat">
+              <Chat />
             </Route>
             <Route exact path="/">
               <RandomQuotesArea />

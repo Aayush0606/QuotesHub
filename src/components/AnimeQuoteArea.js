@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import QuoteCard from "./QuoteCard";
 import Loading from "./Loading";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { useHistory } from "react-router-dom";
 
 export default function AnimeQuoteArea() {
   const [text, setTetx] = useState("Anime");
@@ -15,22 +16,30 @@ export default function AnimeQuoteArea() {
     return data.charAt(0).toUpperCase() + data.slice(1);
   };
 
+  const history = useHistory();
   const GetAnimeQuote = async () => {
     setQuoteList([]);
     setLoading(true);
     setPage(1);
     let data;
     const url = `https://animechan.vercel.app/api/quotes/anime?title=${title}&page=1`;
-    try {
-      data = await fetch(url);
-    } catch (e) {
-      alert("Something went wrong");
-      return;
+    data = await fetch(url);
+    if (data.ok) {
+      const parsedData = await data.json();
+      setHasMore(parsedData.length);
+      setLoading(false);
+      setQuoteList(parsedData);
+    } else if (data.status === 404) {
+      setLoading(false);
+      setQuoteList([]);
+      alert("Not Found");
+      history.push("/character");
+    } else {
+      setLoading(false);
+      setQuoteList([]);
+      alert("Error occured");
+      history.push("/character");
     }
-    const parsedData = await data.json();
-    setHasMore(parsedData.length);
-    setLoading(false);
-    setQuoteList(parsedData);
   };
   const fetchMore = async () => {
     let data;
