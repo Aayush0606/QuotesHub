@@ -15,14 +15,18 @@ QuotesArea.defaultProps = {
 };
 
 export default function QuotesArea() {
+  const history = useHistory();
   useEffect(() => {
-    GetRandomQuotes();
+    {
+      localStorage.getItem("auth-token")
+        ? GetRandomQuotes()
+        : history.push("/signup");
+    }
   }, []);
   document.title = `Random Quotes`;
   const [quoteList, setQuoteList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(10);
-  const history = useHistory();
   // eslint-disable-next-line
   const GetRandomQuotes = async () => {
     setLoading(true);
