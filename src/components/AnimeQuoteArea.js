@@ -32,13 +32,15 @@ export default function AnimeQuoteArea() {
     } else if (data.status === 404) {
       setLoading(false);
       setQuoteList([]);
+      setTetx("Anime");
       alert("Not Found");
-      history.push("/character");
+      history.push("/anime");
     } else {
       setLoading(false);
       setQuoteList([]);
+      setTetx("Anime");
       alert("Error occured");
-      history.push("/character");
+      history.push("/anime");
     }
   };
   const fetchMore = async () => {

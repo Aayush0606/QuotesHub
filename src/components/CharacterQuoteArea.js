@@ -33,11 +33,13 @@ export default function AnimeQuoteArea() {
     } else if (data.status === 404) {
       setLoading(false);
       setQuoteList([]);
+      setTetx("Character");
       alert("Not Found");
       history.push("/character");
     } else {
       setLoading(false);
       setQuoteList([]);
+      setTetx("Character");
       alert("Error occured");
       history.push("/character");
     }

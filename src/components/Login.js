@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
+import dotenv from "dotenv";
+dotenv.config();
 
 export default function Login() {
+  const host = process.env.REACT_APP_SERVER_HOST;
   document.title = "Login QuotesHub";
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   let history = useHistory();
   const handleSignUp = async () => {
-    const url = `http://localhost:8000/api/auth/login`;
+    const url = `${host}/api/auth/login`;
     const response = await fetch(url, {
       method: "POST",
       headers: {

@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import dotenv from "dotenv";
+dotenv.config();
 
 export default function Signup() {
+  const host = process.env.REACT_APP_SERVER_HOST;
   document.title = "Signup QuotesHub";
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
@@ -13,7 +16,7 @@ export default function Signup() {
       alert("Confirm Pass and Pass should be same");
       return;
     }
-    const url = `http://localhost:8000/api/auth/signup`;
+    const url = `${host}/api/auth/signup`;
     const response = await fetch(url, {
       method: "POST",
       headers: {
@@ -50,7 +53,7 @@ export default function Signup() {
               required
               type="text"
               className="form-control"
-              id="exampleFormControlInput1"
+              id="name"
               value={name}
               onChange={(e) => {
                 setName(e.target.value);
@@ -58,14 +61,14 @@ export default function Signup() {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="exampleFormControlInput1" className="form-label">
+            <label htmlFor="email" className="form-label">
               Email address
             </label>
             <input
               required
               type="email"
               className="form-control"
-              id="exampleFormControlInput1"
+              id="email"
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);

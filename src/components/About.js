@@ -18,7 +18,10 @@ export default function About() {
         <div className="container">
           <h1 className="text-center">About Me</h1>
           <p className="text-center">
-            Hello my name is Aayush Sharma and I created this site
+            Hello my name is Aayush Sharma and I created this web app as a fun
+            project while learning React. I used MERN Stack for this app
+            development and deployed it using Heroku and Netlify.Feel free to
+            contact me via social links given below.
           </p>
         </div>
         <div className="container">

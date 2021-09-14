@@ -1,8 +1,10 @@
 import { useState } from "react";
 import QuotesContext from "./QuotesContext";
+import dotenv from "dotenv";
+dotenv.config();
 
 const QuotesState = (props) => {
-  const host = `http://localhost:8000`;
+  const host = process.env.REACT_APP_SERVER_HOST;
   const [Quotes, setQuotes] = useState([]);
 
   const fetchQuotes = async () => {

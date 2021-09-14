@@ -10,8 +10,10 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Chat from "./components/Chat";
 import { io } from "socket.io-client";
+import dotenv from "dotenv";
+dotenv.config();
 
-const socket = io(`http://localhost:8000`);
+const socket = io(process.env.REACT_APP_SERVER_HOST);
 export { socket };
 function App() {
   return (
