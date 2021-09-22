@@ -11,7 +11,6 @@ import { SiSocketDotIo, SiMongodb } from "react-icons/si";
 
 export default function About() {
   document.title = `About Me`;
-
   return (
     <>
       <div className="container">
@@ -29,29 +28,29 @@ export default function About() {
           <div className="text-center">
             <ul className="social mb-0 list-inline mt-3">
               <li className="list-inline-item">
-                <p className="social-link">
+                <a href="https://reactjs.org/" className="social-link">
                   <FaReact className="icon" />
-                </p>
+                </a>
               </li>
               <li className="list-inline-item">
-                <p className="social-link">
+                <a href="https://nodejs.org/en/" className="social-link">
                   <FaNode className="icon" />
-                </p>
+                </a>
               </li>
               <li className="list-inline-item">
-                <p className="social-link">
+                <a href="https://socket.io/" className="social-link">
                   <SiSocketDotIo className="icon" />
-                </p>
+                </a>
               </li>
               <li className="list-inline-item">
-                <p className="social-link">
+                <a href="https://getbootstrap.com/" className="social-link">
                   <FaBootstrap className="icon" />
-                </p>
+                </a>
               </li>
               <li className="list-inline-item">
-                <p className="social-link">
+                <a href="https://www.mongodb.com/" className="social-link">
                   <SiMongodb className="icon" />
-                </p>
+                </a>
               </li>
             </ul>
           </div>
